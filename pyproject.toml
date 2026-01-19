@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rob2004"
+version = "1.0.0"
+description = "Class Material for NYU ROB_UY_2004 Robotics Class"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+
+authors = [
+    { name = "Chris Clark", email = "cmc9655@nyu.edu" },
+    { name = "Rooholla Khorrambakht", email = "rk4342@nyu.edu" },
+    { name = "Haizhou Zhao", email = "hz3862@nyu.edu" },
+]
+
+dependencies = [
+    "mujoco>=3.3.1",
+    "matplotlib>=3.10.1",
+    "zerorpc>=0.6.3"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
