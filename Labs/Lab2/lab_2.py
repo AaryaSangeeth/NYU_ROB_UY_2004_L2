@@ -184,6 +184,15 @@ class ForwardKinematics(Node):
                 f"End-Effector Position: x={end_effector_position_f[0]:.2f}, y={end_effector_position_f[1]:.2f}, z={end_effector_position_f[2]:.2f}"
             )
 
+            dx = end_effector_position_f[0] - end_effector_position_b[0]
+            dy = end_effector_position_f[1] - end_effector_position_b[1]
+            dz = end_effector_position_f[2] - end_effector_position_b[2]
+            dist = math.sqrt(dx**2 + dy**2 + dz**2)
+            threshold = 0.5
+            if dist < threshold: 
+                playing = sound.play()
+
+
 
 def main(args=None):
     rclpy.init(args=args)
