@@ -102,21 +102,36 @@ def get_gradient(joint_angles, ee_position):
     return gradient
 
 
+# def inverse_kinematics_with_gradient(target_position):
+#     joint_angles = np.array([0.0, 0.0, 0.0])  # Initial guess for joint angles
+#     alpha = 0.54
+#     max_iterations = 30000
+#     tolerance = 0.0001
+#     sq_error = 100
+
+#     iteration = 0
+#     while (iteration < max_iterations and sq_error >tolerance):
+#         gradient = get_gradient(joint_angles, target_position)
+#         #going in the direction of negative gradient 
+#         joint_angles = joint_angles -  (alpha*gradient) # updating joint angles 
+#         sq_err, mean_err = get_cost(joint_angles, target_position)  # Get mean error for convergence check
+#         iteration+=1 
+#     return joint_angles
+
+
+
 def inverse_kinematics_with_gradient(target_position):
     joint_angles = np.array([0.0, 0.0, 0.0])  # Initial guess for joint angles
     alpha = 0.54
     max_iterations = 30000
-    tolerance = 0.0001
-    sq_error = 100
+    tolerance = 0.00001
+    mean_error = 100
 
     iteration = 0
-    while (iteration < max_iterations and sq_error >tolerance):
+    while (iteration < max_iterations and mean_error >tolerance):
         gradient = get_gradient(joint_angles, target_position)
         #going in the direction of negative gradient 
         joint_angles = joint_angles -  (alpha*gradient) # updating joint angles 
-        sq_err, mean_err = get_cost(joint_angles, target_position)  # Get mean error for convergence check
+        sq_err, mean_error = get_cost(joint_angles, target_position)  # Get mean error for convergence check
         iteration+=1 
     return joint_angles
-
-
-
